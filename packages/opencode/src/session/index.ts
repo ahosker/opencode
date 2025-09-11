@@ -1,4 +1,5 @@
 import os from "os"
+import * as partial from "partial-json"
 import path from "path"
 import fs from "fs/promises"
 import { spawn } from "child_process"
@@ -1499,12 +1500,27 @@ export namespace Session {
                   callID: value.id,
                   state: {
                     status: "pending",
+                    raw: "",
+                    input: {},
                   },
                 })
                 toolcalls[value.id] = part as MessageV2.ToolPart
                 break
 
               case "tool-input-delta":
+                const match = toolcalls[value.id]
+                if (match) {
+                  const next = match.state.status === "pending" ? match.state.raw + value.delta : value.delta
+                  const part = await updatePart({
+                    ...match,
+                    state: {
+                      status: "pending",
+                      raw: next,
+                      input: next ? partial.parseJSON(next, partial.ALL) : {},
+                    },
+                  })
+                  toolcalls[value.id] = part as MessageV2.ToolPart
+                }
                 break
 
               case "tool-input-end":

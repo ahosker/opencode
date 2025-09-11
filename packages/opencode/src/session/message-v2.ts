@@ -20,6 +20,8 @@ export namespace MessageV2 {
   export const ToolStatePending = z
     .object({
       status: z.literal("pending"),
+      raw: z.string(),
+      input: z.record(z.any()),
     })
     .openapi({
       ref: "ToolStatePending",

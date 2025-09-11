@@ -1,13 +1,14 @@
 import { createEffect, createMemo, For, Match, Show, Switch, type Component } from "solid-js"
 import { Dynamic } from "solid-js/web"
+import highlight from "tree-sitter-highlight"
 import path from "path"
 import { useRouteData } from "./context/route"
 import { useSync } from "./context/sync"
 import { SplitBorder } from "./component/border"
 import { Theme } from "./context/theme"
-import { bold, fg, ScrollBoxRenderable, type TextChunk } from "@opentui/core"
+import { bold, fg, hastToStyledText, RGBA, ScrollBoxRenderable, SyntaxStyle, type TextChunk } from "@opentui/core"
 import { Prompt } from "./component/prompt"
-import type { AssistantMessage, Part, ToolPart, UserMessage } from "@opencode-ai/sdk"
+import type { AssistantMessage, Part, ToolPart, ToolStatePending, UserMessage } from "@opencode-ai/sdk"
 import type { TextPart } from "ai"
 import { useLocal } from "./context/local"
 import { Locale } from "../../../util/locale"
@@ -172,16 +173,13 @@ function ToolPart(props: { part: ToolPart; message: AssistantMessage }) {
     if (props.part.state.status === "pending") {
       const pending = ToolRegistry.pending(props.part.tool)
       if (!pending) return
-      return pending({})
+      console.log(props.part.state.status, props.part.state.raw)
+      return <Dynamic component={pending} state={props.part.state} />
     }
 
     const ready = ToolRegistry.ready(props.part.tool)
     if (!ready) return
-    return ready({
-      input: props.part.state.input,
-      metadata: props.part.state.metadata,
-      output: props.part.state.status === "completed" ? props.part.state.output : undefined,
-    })
+    return <Dynamic component={ready} input={props.part.state.input} metadata={props.part.state.metadata} output={props.part.state.status === "completed" ? props.part.state.output : undefined} />
   })
 
   return (
@@ -205,7 +203,7 @@ const ToolRegistry = (() => {
   const state: Record<string, ReturnType<typeof register>> = {}
   function register<T extends Tool.Info>(input: {
     name: string
-    pending?: Component
+    pending?: Component<{ state: ToolStatePending }>
     ready?: Component<ToolProps<T>>
   }) {
     state[input.name] = input
@@ -238,15 +236,36 @@ ToolRegistry.register<typeof BashTool>({
   },
 })
 
+const syntax = new SyntaxStyle({
+  keyword: { fg: RGBA.fromHex(Theme.syntaxKeyword), bold: true },
+  string: { fg: RGBA.fromHex(Theme.syntaxString) },
+  comment: { fg: RGBA.fromHex(Theme.syntaxComment), italic: true },
+  number: { fg: RGBA.fromHex(Theme.syntaxNumber) },
+  function: { fg: RGBA.fromHex(Theme.syntaxFunction) },
+  type: { fg: RGBA.fromHex(Theme.syntaxType) },
+  operator: { fg: RGBA.fromHex(Theme.syntaxOperator) },
+  variable: { fg: RGBA.fromHex(Theme.syntaxVariable) },
+  bracket: { fg: RGBA.fromHex(Theme.syntaxPunctuation) },
+  punctuation: { fg: RGBA.fromHex(Theme.syntaxPunctuation) },
+  default: { fg: RGBA.fromHex(Theme.syntaxVariable) },
+})
+
 ToolRegistry.register<typeof ReadTool>({
   name: "read",
   pending: () => "Reading file...",
   ready(props) {
+    const hast = createMemo(() => {
+      const text = props.metadata?.preview
+        ? highlight.highlightHast(props.metadata.preview, highlight.Language.TS)
+        : ""
+      const styled = hastToStyledText(text as any, syntax)
+      return styled
+    })
     return (
       <>
         <text fg={Theme.textMuted}>Read {props.input["filePath"]}</text>
         <box>
-          <text>{props.metadata?.preview || ""}</text>
+          <text>{hast()}</text>
         </box>
       </>
     )
@@ -255,7 +274,16 @@ ToolRegistry.register<typeof ReadTool>({
 
 ToolRegistry.register<typeof WriteTool>({
   name: "write",
-  pending: () => "Preparing write...",
+  pending(props) {
+    return (
+      <>
+        <text fg={Theme.textMuted}>Writing {props.state.input["input"]?.filePath}</text>
+        <box>
+          <text>{props.state.input["content"] || ""}</text>
+        </box>
+      </>
+    )
+  },
   ready(props) {
     return (
       <>

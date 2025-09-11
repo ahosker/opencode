@@ -54,6 +54,9 @@ export type Event =
       type: "session.error"
     } & EventSessionError)
   | ({
+      type: "session.compacted"
+    } & EventSessionCompacted)
+  | ({
       type: "server.connected"
     } & EventServerConnected)
 
@@ -316,6 +319,10 @@ export type ToolState =
 
 export type ToolStatePending = {
   status: "pending"
+  raw: string
+  input: {
+    [key: string]: unknown
+  }
 }
 
 export type ToolStateRunning = {
@@ -510,6 +517,7 @@ export type Session = {
   time: {
     created: number
     updated: number
+    compacting?: number
   }
   revert?: {
     messageID: string
@@ -550,6 +558,13 @@ export type EventSessionError = {
       | ({
           name: "MessageAbortedError"
         } & MessageAbortedError)
+  }
+}
+
+export type EventSessionCompacted = {
+  type: "session.compacted"
+  properties: {
+    sessionID: string
   }
 }
 
