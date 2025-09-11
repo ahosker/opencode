@@ -52,6 +52,7 @@ import { defer } from "../util/defer"
 import { Command } from "../command"
 import { $ } from "bun"
 import { ListTool } from "../tool/ls"
+import { LSP } from "../lsp"
 
 export namespace Session {
   const log = Log.create({ service: "session" })
