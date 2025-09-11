@@ -279,15 +279,8 @@ ToolRegistry.register<typeof ReadTool>({
 
 ToolRegistry.register<typeof WriteTool>({
   name: "write",
-  pending(props) {
-    return (
-      <>
-        <text fg={Theme.textMuted}>Writing {props.state.input["input"]?.filePath}</text>
-        <box>
-          <text>{props.state.input["content"] || ""}</text>
-        </box>
-      </>
-    )
+  pending() {
+    return "Writing file..."
   },
   ready(props) {
     return (
