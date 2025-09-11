@@ -7,7 +7,7 @@
         "pulumi-stripe": "0.0.24",
       },
       "devDependencies": {
-        "prettier": "3.5.3",
+        "prettier": "3.6.2",
         "sst": "3.17.12",
       },
     },
@@ -26,7 +26,7 @@
     },
     "cloud/core": {
       "name": "@opencode/cloud-core",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@aws-sdk/client-sts": "3.782.0",
         "@opencode/cloud-resource": "workspace:*",
@@ -43,7 +43,7 @@
     },
     "cloud/function": {
       "name": "@opencode/cloud-function",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@ai-sdk/anthropic": "2.0.0",
         "@ai-sdk/openai": "2.0.2",
@@ -69,7 +69,7 @@
     },
     "cloud/scripts": {
       "name": "@opencode/cloud-scripts",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@opencode/cloud-core": "workspace:*",
         "tsx": "4.20.5",
@@ -81,7 +81,7 @@
     },
     "packages/function": {
       "name": "@opencode/function",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@octokit/auth-app": "8.0.1",
         "@octokit/rest": "22.0.0",
@@ -96,7 +96,7 @@
     },
     "packages/opencode": {
       "name": "opencode",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "bin": {
         "opencode": "./bin/opencode",
       },
@@ -153,7 +153,7 @@
     },
     "packages/plugin": {
       "name": "@opencode-ai/plugin",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@opencode-ai/sdk": "workspace:*",
       },
@@ -164,7 +164,7 @@
     },
     "packages/sdk/js": {
       "name": "@opencode-ai/sdk",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@hey-api/openapi-ts": "0.82.3",
       },
@@ -175,7 +175,7 @@
     },
     "packages/web": {
       "name": "@opencode/web",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "dependencies": {
         "@astrojs/cloudflare": "12.6.3",
         "@astrojs/markdown-remark": "6.3.1",
@@ -2337,7 +2337,7 @@
 
     "prebuild-install": ["prebuild-install@7.1.3", "", { "dependencies": { "detect-libc": "^2.0.0", "expand-template": "^2.0.3", "github-from-package": "0.0.0", "minimist": "^1.2.3", "mkdirp-classic": "^0.5.3", "napi-build-utils": "^2.0.0", "node-abi": "^3.3.0", "pump": "^3.0.0", "rc": "^1.2.7", "simple-get": "^4.0.0", "tar-fs": "^2.0.0", "tunnel-agent": "^0.6.0" }, "bin": { "prebuild-install": "bin.js" } }, "sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug=="],
 
-    "prettier": ["prettier@3.5.3", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw=="],
+    "prettier": ["prettier@3.6.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ=="],
 
     "pretty-bytes": ["pretty-bytes@7.0.1", "", {}, "sha512-285/jRCYIbMGDciDdrw0KPNC4LKEEwz/bwErcYNxSJOi4CpGUuLpb9gQpg3XJP0XYj9ldSRluXxih4lX2YN8Xw=="],
 
