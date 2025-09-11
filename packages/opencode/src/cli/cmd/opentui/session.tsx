@@ -179,7 +179,14 @@ function ToolPart(props: { part: ToolPart; message: AssistantMessage }) {
 
     const ready = ToolRegistry.ready(props.part.tool)
     if (!ready) return
-    return <Dynamic component={ready} input={props.part.state.input} metadata={props.part.state.metadata} output={props.part.state.status === "completed" ? props.part.state.output : undefined} />
+    return (
+      <Dynamic
+        component={ready}
+        input={props.part.state.input}
+        metadata={props.part.state.metadata}
+        output={props.part.state.status === "completed" ? props.part.state.output : undefined}
+      />
+    )
   })
 
   return (
@@ -255,9 +262,7 @@ ToolRegistry.register<typeof ReadTool>({
   pending: () => "Reading file...",
   ready(props) {
     const hast = createMemo(() => {
-      const text = props.metadata?.preview
-        ? highlight.highlightHast(props.metadata.preview, highlight.Language.TS)
-        : ""
+      const text = props.metadata?.preview ? highlight.highlightHast(props.metadata.preview, highlight.Language.TS) : ""
       const styled = hastToStyledText(text as any, syntax)
       return styled
     })

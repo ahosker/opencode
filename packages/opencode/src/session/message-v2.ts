@@ -386,6 +386,8 @@ export namespace MessageV2 {
                 if (part.toolInvocation.state === "partial-call") {
                   return {
                     status: "pending",
+                    input: {},
+                    raw: "",
                   }
                 }
 
