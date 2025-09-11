@@ -1099,7 +1099,7 @@ export namespace Session {
               "x-opencode-request": userMsg.id,
             }
           : undefined,
-      maxRetries: 3,
+      maxRetries: 10,
       activeTools: Object.keys(tools).filter((x) => x !== "invalid"),
       maxOutputTokens: ProviderTransform.maxOutputTokens(model.providerID, outputLimit, params.options),
       abortSignal: abort.signal,
