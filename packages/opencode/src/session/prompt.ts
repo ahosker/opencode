@@ -876,6 +876,8 @@ export namespace SessionPrompt {
                   callID: value.id,
                   state: {
                     status: "pending",
+                    input: {},
+                    raw: "",
                   },
                 })
                 toolcalls[value.id] = part as MessageV2.ToolPart

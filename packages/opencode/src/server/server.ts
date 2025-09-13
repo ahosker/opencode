@@ -28,6 +28,7 @@ import { zodToJsonSchema } from "zod-to-json-schema"
 import { SessionPrompt } from "../session/prompt"
 import { SessionCompaction } from "../session/compaction"
 import { SessionRevert } from "../session/revert"
+import { Todo } from "../session/todo"
 
 const ERRORS = {
   400: {
