@@ -36,8 +36,8 @@
     "pulumi-stripe": "0.0.24"
   },
   "devDependencies": {
-    "prettier": "3.6.2",
-    "sst": "3.17.12"
+    "prettier": "3.5.3",
+    "sst": "3.17.13"
   },
   "repository": {
     "type": "git",

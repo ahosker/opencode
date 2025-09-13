@@ -352,6 +352,7 @@ export type ToolStateCompleted = {
   time: {
     start: number
     end: number
+    compacted?: number
   }
 }
 
@@ -780,6 +781,7 @@ export type Config = {
         }
       }>
     }
+    disable_paste_summary?: boolean
   }
 }
 
