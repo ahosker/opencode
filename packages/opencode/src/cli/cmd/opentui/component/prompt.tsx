@@ -1,4 +1,4 @@
-import { InputRenderable, TextAttributes, fg, bold, BoxRenderable, type ParsedKey } from "@opentui/core"
+import { InputRenderable, TextAttributes, BoxRenderable, type ParsedKey } from "@opentui/core"
 import { createEffect, createMemo, createResource, For, Match, onMount, Switch } from "solid-js"
 
 import { useLocal } from "../context/local"
@@ -181,11 +181,14 @@ export function Prompt(props: PromptProps) {
               <text>working...</text>
             </Match>
             <Match when={true}>
-              <text>enter {fg(Theme.textMuted)("send")}</text>
+              <text>
+                enter <span style={{ fg: Theme.textMuted }}>send</span>
+              </text>
             </Match>
           </Switch>
           <text>
-            {fg(Theme.textMuted)(local.model.parsed().provider)} {bold(local.model.parsed().model)}
+            <span style={{ fg: Theme.textMuted }}>{local.model.parsed().provider}</span>{" "}
+            <span style={{ bold: true }}>{local.model.parsed().model}</span>
           </text>
         </box>
       </box>

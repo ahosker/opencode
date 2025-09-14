@@ -6,7 +6,7 @@ import { useRouteData } from "./context/route"
 import { useSync } from "./context/sync"
 import { SplitBorder } from "./component/border"
 import { Theme } from "./context/theme"
-import { bold, fg, hastToStyledText, RGBA, ScrollBoxRenderable, SyntaxStyle, type TextChunk } from "@opentui/core"
+import { hastToStyledText, RGBA, ScrollBoxRenderable, SyntaxStyle } from "@opentui/core"
 import { Prompt } from "./component/prompt"
 import type { AssistantMessage, Part, ToolPart, ToolStatePending, UserMessage } from "@opencode-ai/sdk"
 import type { TextPart } from "ai"
@@ -49,7 +49,8 @@ export function Session() {
       <Show when={session()}>
         <box paddingLeft={1} paddingRight={1} {...SplitBorder} borderColor={Theme.backgroundElement}>
           <text>
-            {bold(fg(Theme.accent)("#"))} {bold(session().title)}
+            <span style={{ bold: true, fg: Theme.accent }}>#</span>{" "}
+            <span style={{ bold: true }}>{session().title}</span>
           </text>
           <box flexDirection="row">
             <Switch>
@@ -57,7 +58,9 @@ export function Session() {
                 <text fg={Theme.textMuted}>{session().share!.url}</text>
               </Match>
               <Match when={true}>
-                <text>/share {fg(Theme.textMuted)("to create a shareable link")}</text>
+                <text>
+                  /share <span style={{ fg: Theme.textMuted }}>to create a shareable link</span>
+                </text>
               </Match>
             </Switch>
           </box>
@@ -91,7 +94,7 @@ export function Session() {
           <box paddingBottom={1}>
             <For each={todo()}>
               {(todo) => (
-                <text fg={todo.status === "in_progress" ? Theme.success : Theme.textMuted}>
+                <text style={{ fg: todo.status === "in_progress" ? Theme.success : Theme.textMuted }}>
                   [{todo.status === "completed" ? "✓" : " "}] {todo.content}
                 </text>
               )}
@@ -122,7 +125,8 @@ function UserMessage(props: { message: UserMessage; parts: Part[] }) {
     >
       <text>{text()?.text}</text>
       <text>
-        {sync.data.config.username ?? "You"} {fg(Theme.textMuted)("(" + Locale.time(props.message.time.created) + ")")}
+        {sync.data.config.username ?? "You"}{" "}
+        <span style={{ fg: Theme.textMuted }}>({Locale.time(props.message.time.created)})</span>
       </text>
     </box>
   )
@@ -157,8 +161,8 @@ function TextPart(props: { part: TextPart; message: AssistantMessage }) {
     <box paddingLeft={3}>
       <text>{props.part.text.trim()}</text>
       <text>
-        {fg(local.agent.color(agent().name))(Locale.titlecase(agent().name))}{" "}
-        {fg(Theme.textMuted)(props.message.providerID + "/" + props.message.modelID)}
+        <span style={{ fg: local.agent.color(agent().name) }}>{Locale.titlecase(agent().name)}</span>{" "}
+        <span style={{ fg: Theme.textMuted }}>{props.message.providerID + "/" + props.message.modelID}</span>
       </text>
     </box>
   )
@@ -233,7 +237,9 @@ ToolRegistry.register<typeof BashTool>({
   ready(props) {
     return (
       <>
-        <text fg={Theme.textMuted}>Shell {props.input["description"]}</text>
+        <text fg={Theme.textMuted}>
+          Shell {props.input["description"]}
+        </text>
         <box>
           <text>$ {props.input["command"]}</text>
           <text>{props.output?.trim()}</text>
@@ -270,7 +276,7 @@ ToolRegistry.register<typeof ReadTool>({
       <>
         <text fg={Theme.textMuted}>Read {props.input["filePath"]}</text>
         <box>
-          <text>{hast()}</text>
+          <text>{props.metadata?.preview}</text>
         </box>
       </>
     )
@@ -379,8 +385,8 @@ ToolRegistry.register<typeof EditTool>({
   ready(props) {
     const diffContent = createMemo(() => {
       const parsed = props.metadata?.diff ? parsePatch(props.metadata.diff) : []
-      const left: TextChunk[] = []
-      const right: TextChunk[] = []
+      const left: string[] = []
+      const right: string[] = []
 
       for (const change of parsed) {
         for (const hunk of change.hunks) {
@@ -389,14 +395,14 @@ ToolRegistry.register<typeof EditTool>({
             const rest = line.slice(1)
             switch (prefix) {
               case " ":
-                left.push(fg(Theme.textMuted)(rest))
-                right.push(fg(Theme.textMuted)(rest))
+                left.push(rest)
+                right.push(rest)
                 break
               case "+":
-                right.push(fg(Theme.diffAdded)(rest))
+                right.push(rest)
                 break
               case "-":
-                left.push(fg(Theme.diffRemoved)(rest))
+                left.push(rest)
                 break
             }
           }
@@ -411,7 +417,7 @@ ToolRegistry.register<typeof EditTool>({
 
     return (
       <>
-        <text fg={Theme.textMuted}>Edit {props.input.filePath}</text>
+        <text style={{ fg: Theme.textMuted }}>Edit {props.input.filePath}</text>
         <box flexDirection="row">
           <box flexGrow={1} flexShrink={0}>
             <For each={diffContent().left}>{(line) => <text>{line}</text>}</For>

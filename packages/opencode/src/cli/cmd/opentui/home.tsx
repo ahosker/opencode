@@ -1,6 +1,6 @@
 import { Installation } from "../../../installation"
 import { Theme } from "./context/theme"
-import { TextAttributes, bold, fg } from "@opentui/core"
+import { TextAttributes } from "@opentui/core"
 import { Prompt } from "./component/prompt"
 
 export function Home() {
@@ -26,8 +26,9 @@ export function Home() {
 function HelpRow(props: { children: string; slash: string }) {
   return (
     <text>
-      {bold(fg(Theme.primary)("/" + props.slash.padEnd(10, " ")))} {props.children.padEnd(15, " ")}{" "}
-      {fg(Theme.textMuted)("ctrl+x n")}
+      <span style={{ bold: true, fg: Theme.primary }}>/{props.slash.padEnd(10, " ")}</span>
+      <span>{props.children.padEnd(15, " ")}{" "}</span>
+      <span style={{ fg: Theme.textMuted }}>ctrl+x n</span>
     </text>
   )
 }

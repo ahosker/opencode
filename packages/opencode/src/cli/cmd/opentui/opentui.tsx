@@ -1,6 +1,6 @@
 import { cmd } from "../cmd"
 import { render, useKeyHandler, useRenderer, useTerminalDimensions } from "@opentui/solid"
-import { bold, TextAttributes } from "@opentui/core"
+import { TextAttributes } from "@opentui/core"
 import { RouteProvider, useRoute } from "./context/route"
 import { Home } from "./home"
 import { Switch, Match, createEffect } from "solid-js"
@@ -85,11 +85,11 @@ function App() {
     <box width={dimensions().width} height={dimensions().height} backgroundColor={Theme.background}>
       <box flexDirection="column" flexGrow={1}>
         <Switch>
-          <Match when={route.data.type === "session"}>
-            <Session />
-          </Match>
           <Match when={route.data.type === "home"}>
             <Home />
+          </Match>
+          <Match when={route.data.type === "session"}>
+            <Session />
           </Match>
         </Switch>
       </box>
@@ -111,7 +111,7 @@ function App() {
           <text fg={local.agent.color(local.agent.current().name)}>┃</text>
           <text bg={local.agent.color(local.agent.current().name)} fg={Theme.background}>
             {" "}
-            {bold(local.agent.current().name.toUpperCase())} AGENT{" "}
+            <span style={{ bold: true }}>{local.agent.current().name.toUpperCase()}</span><span> AGENT{" "}</span>
           </text>
         </box>
       </box>
