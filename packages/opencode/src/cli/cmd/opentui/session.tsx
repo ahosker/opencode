@@ -237,9 +237,7 @@ ToolRegistry.register<typeof BashTool>({
   ready(props) {
     return (
       <>
-        <text fg={Theme.textMuted}>
-          Shell {props.input["description"]}
-        </text>
+        <text fg={Theme.textMuted}>Shell {props.input["description"]}</text>
         <box>
           <text>$ {props.input["command"]}</text>
           <text>{props.output?.trim()}</text>

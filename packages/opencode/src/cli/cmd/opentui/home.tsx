@@ -27,7 +27,7 @@ function HelpRow(props: { children: string; slash: string }) {
   return (
     <text>
       <span style={{ bold: true, fg: Theme.primary }}>/{props.slash.padEnd(10, " ")}</span>
-      <span>{props.children.padEnd(15, " ")}{" "}</span>
+      <span>{props.children.padEnd(15, " ")} </span>
       <span style={{ fg: Theme.textMuted }}>ctrl+x n</span>
     </text>
   )

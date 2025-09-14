@@ -111,7 +111,8 @@ function App() {
           <text fg={local.agent.color(local.agent.current().name)}>┃</text>
           <text bg={local.agent.color(local.agent.current().name)} fg={Theme.background}>
             {" "}
-            <span style={{ bold: true }}>{local.agent.current().name.toUpperCase()}</span><span> AGENT{" "}</span>
+            <span style={{ bold: true }}>{local.agent.current().name.toUpperCase()}</span>
+            <span> AGENT </span>
           </text>
         </box>
       </box>
