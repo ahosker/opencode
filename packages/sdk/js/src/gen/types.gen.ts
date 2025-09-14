@@ -42,6 +42,9 @@ export type Event =
       type: "file.edited"
     } & EventFileEdited)
   | ({
+      type: "todo.updated"
+    } & EventTodoUpdated)
+  | ({
       type: "session.idle"
     } & EventSessionIdle)
   | ({
@@ -473,6 +476,33 @@ export type EventFileEdited = {
   properties: {
     file: string
   }
+}
+
+export type EventTodoUpdated = {
+  type: "todo.updated"
+  properties: {
+    sessionID: string
+    todos: Array<Todo>
+  }
+}
+
+export type Todo = {
+  /**
+   * Brief description of the task
+   */
+  content: string
+  /**
+   * Current status of the task: pending, in_progress, completed, cancelled
+   */
+  status: string
+  /**
+   * Priority level of the task: high, medium, low
+   */
+  priority: string
+  /**
+   * Unique identifier for the todo item
+   */
+  id: string
 }
 
 export type EventSessionIdle = {

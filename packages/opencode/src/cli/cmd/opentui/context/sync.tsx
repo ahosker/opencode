@@ -37,7 +37,6 @@ function init() {
     for await (const event of events.stream) {
       switch (event.type) {
         case "todo.updated":
-          console.log(event.properties)
           setStore("todo", event.properties.sessionID, event.properties.todos)
           break
         case "session.updated":
