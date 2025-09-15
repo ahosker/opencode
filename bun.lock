@@ -26,7 +26,7 @@
     },
     "cloud/core": {
       "name": "@opencode/cloud-core",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@aws-sdk/client-sts": "3.782.0",
         "@opencode/cloud-resource": "workspace:*",
@@ -43,7 +43,7 @@
     },
     "cloud/function": {
       "name": "@opencode/cloud-function",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@ai-sdk/anthropic": "2.0.0",
         "@ai-sdk/openai": "2.0.2",
@@ -69,7 +69,7 @@
     },
     "cloud/scripts": {
       "name": "@opencode/cloud-scripts",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@opencode/cloud-core": "workspace:*",
         "tsx": "4.20.5",
@@ -81,7 +81,7 @@
     },
     "packages/function": {
       "name": "@opencode/function",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@octokit/auth-app": "8.0.1",
         "@octokit/rest": "22.0.0",
@@ -96,7 +96,7 @@
     },
     "packages/opencode": {
       "name": "opencode",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "bin": {
         "opencode": "./bin/opencode",
       },
@@ -153,7 +153,7 @@
     },
     "packages/plugin": {
       "name": "@opencode-ai/plugin",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@opencode-ai/sdk": "workspace:*",
       },
@@ -164,9 +164,9 @@
     },
     "packages/sdk/js": {
       "name": "@opencode-ai/sdk",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
-        "@hey-api/openapi-ts": "0.82.3",
+        "@hey-api/openapi-ts": "0.83.1",
       },
       "devDependencies": {
         "@tsconfig/node22": "catalog:",
@@ -175,7 +175,7 @@
     },
     "packages/web": {
       "name": "@opencode/web",
-      "version": "0.7.9",
+      "version": "0.8.0",
       "dependencies": {
         "@astrojs/cloudflare": "12.6.3",
         "@astrojs/markdown-remark": "6.3.1",
@@ -493,11 +493,11 @@
 
     "@grpc/proto-loader": ["@grpc/proto-loader@0.7.15", "", { "dependencies": { "lodash.camelcase": "^4.3.0", "long": "^5.0.0", "protobufjs": "^7.2.5", "yargs": "^17.7.2" }, "bin": { "proto-loader-gen-types": "build/bin/proto-loader-gen-types.js" } }, "sha512-tMXdRCfYVixjuFK+Hk0Q1s38gV9zDiDJfWL3h1rv4Qc39oILCu1TRTDt7+fGUI8K4G1Fj125Hx/ru3azECWTyQ=="],
 
-    "@hey-api/codegen-core": ["@hey-api/codegen-core@0.0.1", "", { "peerDependencies": { "typescript": ">=5.5.3" } }, "sha512-Q7vUF7n2gYSL6Z16XFweIm6O7uh9sBGty05X6T5lYBKTMv1K31P2iSTxyhzW04M2r/s3dAE1bCpW+h9di0Ux7w=="],
+    "@hey-api/codegen-core": ["@hey-api/codegen-core@0.1.0", "", { "peerDependencies": { "typescript": ">=5.5.3" } }, "sha512-7B6B9Zuw4uQWoG5YwAwNC+UTz6ErAujqaQrJuMu/OgPkUHq+hl6zdKKi2MX/399vPYilo0IGBxQHmY1UfmTHsw=="],
 
-    "@hey-api/json-schema-ref-parser": ["@hey-api/json-schema-ref-parser@1.0.7", "", { "dependencies": { "@jsdevtools/ono": "^7.1.3", "@types/json-schema": "^7.0.15", "js-yaml": "^4.1.0", "lodash": "^4.17.21" } }, "sha512-XYZIDkzp16pf5d5ADLgoT2efuuIzkIGCtGVXNlexzxQaOIgYAwWON+7Tt77ChXMC/2Cq0qe57hSx1x6KwZyWcA=="],
+    "@hey-api/json-schema-ref-parser": ["@hey-api/json-schema-ref-parser@1.1.0", "", { "dependencies": { "@jsdevtools/ono": "^7.1.3", "@types/json-schema": "^7.0.15", "js-yaml": "^4.1.0", "lodash": "^4.17.21" } }, "sha512-+5eg9pgAAM9oSqJQuUtfTKbLz8yieFKN91myyXiLnprqFj8ROfxUKJLr9DKq/hGKyybKT1WxFSetDqCFm80pCA=="],
 
-    "@hey-api/openapi-ts": ["@hey-api/openapi-ts@0.82.3", "", { "dependencies": { "@hey-api/codegen-core": "^0.0.1", "@hey-api/json-schema-ref-parser": "1.0.7", "ansi-colors": "4.1.3", "c12": "2.0.1", "color-support": "1.1.3", "commander": "13.0.0", "handlebars": "4.7.8", "js-yaml": "4.1.0", "open": "10.1.2", "semver": "7.7.2" }, "peerDependencies": { "typescript": ">=5.5.3" }, "bin": { "openapi-ts": "bin/index.cjs" } }, "sha512-wvSrNxYE6FDrM5zRZHoDTcweLPX0dsMmtCwubS+DmPaD+tGXUWI0UajFB0sfIDGG1EWZUR3NH4ym/+cYl7nCoA=="],
+    "@hey-api/openapi-ts": ["@hey-api/openapi-ts@0.83.1", "", { "dependencies": { "@hey-api/codegen-core": "^0.1.0", "@hey-api/json-schema-ref-parser": "1.1.0", "ansi-colors": "4.1.3", "c12": "2.0.1", "color-support": "1.1.3", "commander": "13.0.0", "handlebars": "4.7.8", "open": "10.1.2", "semver": "7.7.2" }, "peerDependencies": { "typescript": ">=5.5.3" }, "bin": { "openapi-ts": "bin/index.cjs" } }, "sha512-AJIXDsXBLXS4uzhU+yVeNmD43uN6FYPcWpcid7Q0bA4JRXpI+6livOzUUMiuszt3NlgHy1gcf6x15W2xHNSoag=="],
 
     "@hono/zod-validator": ["@hono/zod-validator@0.4.2", "", { "peerDependencies": { "hono": ">=3.9.0", "zod": "^3.19.1" } }, "sha512-1rrlBg+EpDPhzOV4hT9pxr5+xDVmKuz6YJl+la7VCwK6ass5ldyKm5fD+umJdV2zhHD6jROoCCv8NbTwyfhT0g=="],
 
@@ -2337,7 +2337,7 @@
 
     "prebuild-install": ["prebuild-install@7.1.3", "", { "dependencies": { "detect-libc": "^2.0.0", "expand-template": "^2.0.3", "github-from-package": "0.0.0", "minimist": "^1.2.3", "mkdirp-classic": "^0.5.3", "napi-build-utils": "^2.0.0", "node-abi": "^3.3.0", "pump": "^3.0.0", "rc": "^1.2.7", "simple-get": "^4.0.0", "tar-fs": "^2.0.0", "tunnel-agent": "^0.6.0" }, "bin": { "prebuild-install": "bin.js" } }, "sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug=="],
 
-    "prettier": ["prettier@3.6.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ=="],
+    "prettier": ["prettier@3.5.3", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw=="],
 
     "pretty-bytes": ["pretty-bytes@7.0.1", "", {}, "sha512-285/jRCYIbMGDciDdrw0KPNC4LKEEwz/bwErcYNxSJOi4CpGUuLpb9gQpg3XJP0XYj9ldSRluXxih4lX2YN8Xw=="],
 
