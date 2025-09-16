@@ -193,7 +193,9 @@ export type ToolStatePending = {
 
 export type ToolStateRunning = {
   status: "running"
-  input: unknown
+  input: {
+    [key: string]: unknown
+  }
   title?: string
   metadata?: {
     [key: string]: unknown
@@ -372,14 +374,6 @@ export type EventFileEdited = {
   }
 }
 
-export type EventTodoUpdated = {
-  type: "todo.updated"
-  properties: {
-    sessionID: string
-    todos: Array<Todo>
-  }
-}
-
 export type Todo = {
   /**
    * Brief description of the task
@@ -397,6 +391,14 @@ export type Todo = {
    * Unique identifier for the todo item
    */
   id: string
+}
+
+export type EventTodoUpdated = {
+  type: "todo.updated"
+  properties: {
+    sessionID: string
+    todos: Array<Todo>
+  }
 }
 
 export type EventSessionIdle = {
@@ -469,6 +471,7 @@ export type Event =
   | EventPermissionUpdated
   | EventPermissionReplied
   | EventFileEdited
+  | EventTodoUpdated
   | EventSessionIdle
   | EventSessionUpdated
   | EventSessionDeleted
@@ -894,7 +897,7 @@ export type Config = {
          * Timeout in milliseconds for requests to this provider. Default is 300000 (5 minutes). Set to false to disable timeout.
          */
         timeout?: number | false
-        [key: string]: unknown | string | number | false | undefined
+        [key: string]: unknown | string | (number | false) | undefined
       }
     }
   }
@@ -939,9 +942,7 @@ export type Config = {
   permission?: {
     edit?: "ask" | "allow" | "deny"
     bash?:
-      | "ask"
-      | "allow"
-      | "deny"
+      | ("ask" | "allow" | "deny")
       | {
           [key: string]: "ask" | "allow" | "deny"
         }

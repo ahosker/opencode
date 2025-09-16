@@ -1,4 +1,4 @@
-import z from "zod"
+import z from "zod/v4"
 import { Bus } from "../bus"
 import { Storage } from "../storage/storage"
 
