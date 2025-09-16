@@ -697,7 +697,9 @@ export type AgentConfig = {
   permission?: {
     edit?: "ask" | "allow" | "deny"
     bash?:
-      | ("ask" | "allow" | "deny")
+      | "ask"
+      | "allow"
+      | "deny"
       | {
           [key: string]: "ask" | "allow" | "deny"
         }
@@ -711,11 +713,15 @@ export type AgentConfig = {
         [key: string]: boolean
       }
     | boolean
-    | ("subagent" | "primary" | "all")
+    | "subagent"
+    | "primary"
+    | "all"
     | {
         edit?: "ask" | "allow" | "deny"
         bash?:
-          | ("ask" | "allow" | "deny")
+          | "ask"
+          | "allow"
+          | "deny"
           | {
               [key: string]: "ask" | "allow" | "deny"
             }
@@ -897,7 +903,7 @@ export type Config = {
          * Timeout in milliseconds for requests to this provider. Default is 300000 (5 minutes). Set to false to disable timeout.
          */
         timeout?: number | false
-        [key: string]: unknown | string | (number | false) | undefined
+        [key: string]: unknown | string | number | false | undefined
       }
     }
   }
@@ -942,7 +948,9 @@ export type Config = {
   permission?: {
     edit?: "ask" | "allow" | "deny"
     bash?:
-      | ("ask" | "allow" | "deny")
+      | "ask"
+      | "allow"
+      | "deny"
       | {
           [key: string]: "ask" | "allow" | "deny"
         }
