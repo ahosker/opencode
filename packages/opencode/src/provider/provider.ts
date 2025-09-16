@@ -159,12 +159,7 @@ export namespace Provider {
     } = {}
     const models = new Map<
       string,
-      {
-        providerID: string
-        modelID: string
-        info: ModelsDev.Model
-        language: LanguageModel
-      }
+      { providerID: string; modelID: string; info: ModelsDev.Model; language: LanguageModel; npm?: string }
     >()
     const sdk = new Map<number, SDK>()
 
@@ -383,12 +378,14 @@ export namespace Provider {
         modelID,
         info,
         language,
+        npm: info.provider?.npm ?? provider.info.npm,
       })
       return {
         modelID,
         providerID,
         info,
         language,
+        npm: info.provider?.npm ?? provider.info.npm,
       }
     } catch (e) {
       if (e instanceof NoSuchModelError)
