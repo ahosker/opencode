@@ -10,7 +10,7 @@ export namespace Todo {
       priority: z.string().describe("Priority level of the task: high, medium, low"),
       id: z.string().describe("Unique identifier for the todo item"),
     })
-    .openapi({ ref: "Todo" })
+    .meta({ ref: "Todo" })
   export type Info = z.infer<typeof Info>
 
   export const Event = {

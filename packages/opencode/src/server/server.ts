@@ -391,7 +391,7 @@ export namespace Server {
           },
         },
       }),
-      zValidator(
+      validator(
         "param",
         z.object({
           id: z.string(),
