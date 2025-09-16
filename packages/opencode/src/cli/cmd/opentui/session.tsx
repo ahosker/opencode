@@ -186,7 +186,7 @@ function ToolPart(props: { part: ToolPart; message: AssistantMessage }) {
     return (
       <Dynamic
         component={ready}
-        input={props.part.state.input}
+        input={props.part.state.input as any}
         metadata={props.part.state.metadata}
         output={props.part.state.status === "completed" ? props.part.state.output : undefined}
       />
