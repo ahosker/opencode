@@ -186,7 +186,7 @@ function ToolPart(props: { part: ToolPart; message: AssistantMessage }) {
     return (
       <Dynamic
         component={ready}
-        input={props.part.state.input as any}
+        input={props.part.state.input}
         metadata={props.part.state.metadata}
         output={props.part.state.status === "completed" ? props.part.state.output : undefined}
       />
@@ -274,7 +274,7 @@ ToolRegistry.register<typeof ReadTool>({
       <>
         <text fg={Theme.textMuted}>Read {props.input["filePath"]}</text>
         <box>
-          <text>{props.metadata?.preview}</text>
+          <text>{hast()}</text>
         </box>
       </>
     )
